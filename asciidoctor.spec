@@ -1,5 +1,5 @@
 Name:		asciidoctor
-Version:	2.0.15
+Version:	2.0.17
 Release:	1
 Summary:	Tool to convert AsciiDoc(tor) text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
@@ -18,14 +18,26 @@ books and UNIX man pages.
 %autosetup -p1
 
 %build
-gem build %{name}.gemspec
+ln -s asciidoctor.gemspec asciidoctor-%{version}.gemspec
+mkdir build
+cd build
+%gem_build
 
 %install
-%gem_install -n %{name}-%{version}.gem -d %{buildroot}
+cd build
+%gem_install
+cd ..
+
+# The gem install mechanism seems to be broken, so let's
+# do it manually
+mkdir -p %{buildroot}%{ruby_vendorlibdir}
+cp -a lib/* %{buildroot}%{ruby_vendorlibdir}/
+cp -a bin %{buildroot}%{_prefix}
 
 %files
 %{_bindir}/asciidoctor
-%{_libdir}/ruby/gems/*/cache/asciidoctor-%{version}.gem
-%{_libdir}/ruby/gems/*/doc/asciidoctor-%{version}
-%{_libdir}/ruby/gems/*/gems/asciidoctor-%{version}
-%{_libdir}/ruby/gems/*/specifications/asciidoctor-%{version}.gemspec
+%{ruby_vendorlibdir}/asciidoctor.rb
+%{ruby_vendorlibdir}/asciidoctor
+%{ruby_gemdir}/cache/*
+%{ruby_gemdir}/doc/*
+%{ruby_gemdir}/specifications/*
