@@ -1,6 +1,6 @@
 Name:		asciidoctor
-Version:	2.0.17
-Release:	2
+Version:	2.0.18
+Release:	1
 Summary:	Tool to convert AsciiDoc(tor) text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
 Group:		Publishing
@@ -33,12 +33,17 @@ cd ..
 # do it manually
 mkdir -p %{buildroot}%{ruby_vendorlibdir}
 cp -a lib/* %{buildroot}%{ruby_vendorlibdir}/
+# FIXME this is plain wrong, but some stuff (e.g. icewm)
+# hardcodes this bogus location because it's what other
+# distros do
+cp -a data %{buildroot}%{ruby_vendorlibdir}/..
 cp -a bin %{buildroot}%{_prefix}
 
 %files
 %{_bindir}/asciidoctor
 %{ruby_vendorlibdir}/asciidoctor.rb
 %{ruby_vendorlibdir}/asciidoctor
+%{ruby_vendorlibdir}/../data
 %{ruby_gemdir}/cache/*
 %{ruby_gemdir}/doc/*
 %{ruby_gemdir}/specifications/*
