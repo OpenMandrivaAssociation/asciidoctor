@@ -1,5 +1,5 @@
 Name:		asciidoctor
-Version:	2.0.20
+Version:	2.0.21
 Release:	1
 Summary:	Tool to convert AsciiDoc(tor) text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
