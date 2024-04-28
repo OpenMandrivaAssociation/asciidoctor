@@ -1,10 +1,10 @@
 Name:		asciidoctor
-Version:	2.0.21
+Version:	2.0.22
 Release:	1
 Summary:	Tool to convert AsciiDoc(tor) text files to DocBook, HTML or Unix man pages
 License:	GPLv2+
 Group:		Publishing
-Url:		http://asciidoctor.org/
+Url:		https://asciidoctor.org/
 Source0:	https://github.com/asciidoctor/asciidoctor/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildRequires:	ruby
 BuildRequires:	rubygems
